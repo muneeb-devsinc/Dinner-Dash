@@ -69,3 +69,7 @@ group :development, :test do
 end
 
 gem 'solargraph'
+
+gem 'devise'
+
+gem 'bootstrap'
