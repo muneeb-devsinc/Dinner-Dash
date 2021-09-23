@@ -1,0 +1,8 @@
+<%= cl_image_tag(@item.item_picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true) %>
+
+<p class= "display-4"><%= @item.title%></p>
+<br>
+<p class ="display-6"><%= @item.description%></p>
+<br>
+<p class ="h3">Price: <%= @item.price%></p>
+<br>

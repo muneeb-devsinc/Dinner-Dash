@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* sudo apt install postgresql-contrib libpq-dev
+* add gem 'pg' to Gemfile

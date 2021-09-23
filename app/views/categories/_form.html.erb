@@ -1,0 +1,24 @@
+<%= form_with model: @category  do |form|%>
+
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@category.errors.count, "error") %> prohibited
+        this category from being saved:
+      </h2>
+      <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='mb3'>
+    <%= form.label :category, class: 'form-label'%>
+    <%= form.text_field :category, class:'form-control'%>
+  </div>
+  <br>
+  <div class='mb3'>
+    <%=form.submit "Add Category", data: { disable_with: "Saving..." }, class: "btn btn-primary" %>
+  </div>
+  <%end%>

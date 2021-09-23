@@ -1,0 +1,14 @@
+development:
+  cloud_name: "devsinc-muneeb"
+  api_key: "568139153526549"
+  api_secret: "FezGGKfskieSm_0xG3ITS7NYSHs"
+  secure: true
+  cdn_subdomain: true
+
+
+production:
+  cloud_name: "devsinc-muneeb"
+  api_key: "568139153526549"
+  api_secret: "FezGGKfskieSm_0xG3ITS7NYSHs"
+  secure: true
+  cdn_subdomain: true

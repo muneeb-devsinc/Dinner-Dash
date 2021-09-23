@@ -1,0 +1,64 @@
+<%= form_with model: @item  do |form|%>
+
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@item.errors.count, "error") %> prohibited
+        this item from being saved:
+      </h2>
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :user_id %>
+
+  <div class='mb3'>
+    <%= form.label :title, class: 'form-label'%>
+    <%= form.text_field :title, class:'form-control'%>
+  </div>
+  <br>
+  <div class='mb3'>
+    <%= form.label :description, class: 'form-label'%>
+    <%= form.text_field :description, class: 'form-control'%>
+  </div>
+  <br>
+  <div class='mb3'>
+    <%= form.label :price, class: 'form-label'%>
+    <%= form.number_field :price, step: :any, class: 'form-control'%>
+  </div>
+  <br>
+  <div class="mb3">
+    <%= form.label :category %>
+    <br>
+    <%= form.fields_for :categories, @item.categories.build do |categories_fields| %>
+    <%= categories_fields.text_field :category, value: "item" %>
+    <% end %>
+    <br>
+    <div class="form-check">
+    <%= form.collection_check_boxes :category_ids, Category.order(:category).all, :id, :category, class: 'form-check-input' %>
+    </div>
+  </div>
+  <br>
+  <div class='mb3'>
+    <%= form.file_field :item_picture, direct_upload: true %>
+  </div>
+  <br>
+  <%if @item.id.present?%>
+  <div class="mb3">
+     <%= cl_image_tag(@item.item_picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true) %>
+  </div>
+  <br>
+  <div class='mb3'>
+      <%=form.submit "Update Item", data: { disable_with: "Saving..." }, class: "btn btn-primary" %>
+  </div>
+
+  <%else%>
+    <div class='mb3'>
+    <%=form.submit "Add Item", data: { disable_with: "Saving..." }, class: "btn btn-primary" %>
+    </div>
+  <%end%>
+
+<%end%>
