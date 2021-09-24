@@ -78,3 +78,5 @@ gem 'bootstrap'
 gem 'cloudinary', require: true
 
 gem 'activestorage-cloudinary-service'
+
+gem 'active_storage_validations', '~> 0.9.5'

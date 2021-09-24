@@ -1,5 +1,4 @@
 class Category < ApplicationRecord
-  has_many :categorization, dependent: :destroy
-  has_many :items, through: :categorization
-
+  has_many :categorization
+  has_many :items, through: :categorization, dependent: :destroy
 end

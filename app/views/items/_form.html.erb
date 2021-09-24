@@ -1,4 +1,4 @@
-<%= form_with model: @item  do |form|%>
+<%= form_with model: @item, local: true  do |form|%>
 
   <% if @item.errors.any? %>
     <div id="error_explanation">
@@ -7,7 +7,7 @@
         this item from being saved:
       </h2>
       <ul>
-        <% @item.errors.full_messages.each do |msg| %>
+        <% @item.errors.each do |attr,msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -32,10 +32,6 @@
   <br>
   <div class="mb3">
     <%= form.label :category %>
-    <br>
-    <%= form.fields_for :categories, @item.categories.build do |categories_fields| %>
-    <%= categories_fields.text_field :category, value: "item" %>
-    <% end %>
     <br>
     <div class="form-check">
     <%= form.collection_check_boxes :category_ids, Category.order(:category).all, :id, :category, class: 'form-check-input' %>
