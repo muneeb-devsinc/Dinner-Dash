@@ -4,9 +4,10 @@ class CategoriesController < ApplicationController
   end
 
   def new
+    session[:order_id]=4
     @category = Category.new
   end
-  
+
   def show
     @category = Category.find(params[:id])
     @category = @category.items
