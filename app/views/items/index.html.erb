@@ -7,6 +7,7 @@
       <td><%= item.description %></td>
       <td><%= item.price %></td>
       <%= render item.categories%>
+      <td><%= link_to 'Add to Cart',order_items_path(item_id: item.id, unit_price: item.price, item_title: item.title), method: :post,class: "btn btn-dark"%></td>
       <td><%= link_to 'Edit Item',edit_item_path(item),class: "btn btn-dark"%></td>
       <td><%= link_to 'Show Item',item_path(item), class: "btn btn-dark"%></td>
       <td><%= link_to 'Destroy', item_path(item),

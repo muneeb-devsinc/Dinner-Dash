@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_100622) do
+ActiveRecord::Schema.define(version: 2021_09_27_145901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_100622) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_categories_on_category", unique: true
   end
 
   create_table "categorizations", force: :cascade do |t|
@@ -52,11 +53,11 @@ ActiveRecord::Schema.define(version: 2021_09_27_100622) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.string "title"
     t.string "description"
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
     t.index ["title"], name: "index_items_on_title", unique: true
   end
 
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_100622) do
     t.decimal "unit_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "item_title"
     t.index ["item_id"], name: "index_order_items_on_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end

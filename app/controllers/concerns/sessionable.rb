@@ -1,9 +1,9 @@
 module Sessionable
   def current_order
-    if Order.find_by(session[:order_id]).nil?
+    if Order.find_by(id: session[:order_id]).nil?
       Order.new
     else
-      Order.find_by(session[:order_id])
+      Order.find_by(id: session[:order_id])
     end
   end
 end

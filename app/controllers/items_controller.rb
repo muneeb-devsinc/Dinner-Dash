@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
-    byebug
   end
 
   def new
@@ -13,7 +12,6 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path
     else
-      #redirect_to new_item_path
       render 'new'
     end
   end
@@ -45,6 +43,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :item_picture,category_ids: [])
+    params.require(:item).permit(:title, :description, :price, :item_picture, category_ids: [])
   end
 end

@@ -10,7 +10,7 @@
         <%= link_to 'Home',items_path, class:"nav-link"%>
         </li>
         <li class="nav-item">
-        <% if current_user.admin? %>
+        <% if current_user&.admin? %>
         <%= link_to 'New Item',new_item_path, class:"nav-link"%>
         </li>
         <%end%>
@@ -29,6 +29,9 @@
           <%= link_to 'Sign in',new_user_session_path, class:"nav-link"%>
           </li>
         <%end%>
+        <li class="nav-item">
+          <%= link_to 'My Cart',order_path, class:"nav-link"%>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
