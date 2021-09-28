@@ -3,7 +3,7 @@ module Sessionable
     if Order.find_by(id: session[:order_id]).nil?
       Order.new
     else
-      Order.find_by(id: session[:order_id])
+      Order.find_by(id: session[:order_id], status: :inprogress)
     end
   end
 end

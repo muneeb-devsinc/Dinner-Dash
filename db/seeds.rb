@@ -1,5 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup)
 #
 # Examples:
 #
@@ -21,3 +21,11 @@ Category.create(category: 'Pasta')
 Category.create(category: 'Steaks')
 Category.create(category: 'Sides')
 Category.create(category: 'Deserts')
+category = Category.find_by(category: 'Juice')
+item = category.items.new(title: 'Water Melon Juice', description: 'Refreshing Fresh Juice', price: 3.99)
+item.item_picture.attach(io: File.open(Rails.root.join('app/assets/images/watermelon.jpg').to_s),filename: 'watermelon.jpg', content_type: 'image/jpg')
+item.save
+
+item = category.items.new(title: 'Coffee', description: 'get your daily caffeine', price: 3.99)
+item.item_picture.attach(io: File.open(Rails.root.join('app/assets/images/coffee.jpeg').to_s), filename: 'coffee.jpeg', content_type: 'image/jpeg')
+item.save

@@ -1,13 +1,14 @@
 class OrderItemsController < ApplicationController
   include Sessionable
   before_action :order
-  before_action :create_order, only: :create
 
   def create
     @order_item = create_order
-    order.user_id = current_user.id if user_signed_in?
-    @order_item.save
-    session[:order_id] = order.id
+    @order_item.increment!(:quantity)
+    @order.user_id = current_user.id if user_signed_in?
+    flash[:notice] = 'Item added to cart' if @order_item.save
+    session[:order_id] = @order.id
+    redirect_to items_path
   end
 
   def update
@@ -23,7 +24,6 @@ class OrderItemsController < ApplicationController
   end
 
   def show
-    buybug
   end
 
   private
@@ -34,9 +34,10 @@ class OrderItemsController < ApplicationController
 
   def order
     @order ||= current_order
+    @order.user_id = guest_user.id
   end
 
   def create_order
-    order.order_items.new(item_id: params[:item_id], unit_price: params[:unit_price],item_title: params[:item_title])
+    @order.order_items.find_or_initialize_by(item_id: params[:item_id], unit_price: params[:unit_price], item_title: params[:item_title])
   end
 end

@@ -6,4 +6,4 @@
 <br>
 <p class ="h3">Price: <%= @item.price%></p>
 <br>
-<%= link_to 'Add to Cart', %>
+<td><%= link_to 'Add to Cart',order_items_path(item_id: @item.id, unit_price: @item.price, item_title: @item.title), method: :post,class: "btn btn-dark"%></td>
