@@ -1,45 +1,51 @@
 class CartsController < ApplicationController
-  before_action :find_order
   include Sessionable
+  before_action :set_cart
+  before_action :show_line_total, :show_total
   def show
-    @cart = @order
-    if !@cart.nil?
-      show_line_total
-      show_total
-    end
+    @cart
   end
 
   def update
-    @cart = @order.order_items.find_by(item_id: params[:item_id])
+    @carts = @cart.order_items.find_by(item_id: params[:item_id])
     if params[:increase]
-      @cart.increment!(:quantity)
+      @carts.increment!(:quantity)
     else
-      @cart.decrement!(:quantity) unless @cart.quantity.zero?
+      @carts.decrement!(:quantity) unless @carts.quantity.zero?
     end
-    @cart.save
+    save_cart
     redirect_to cart_path
   end
 
   def destroy
-    @cart = current_order.order_items.find_by(item_id: params[:item_id])
-    @cart.destroy
+    @carts = @cart.order_items.find_by(item_id: params[:item_id])
+    @carts.destroy
     redirect_to cart_path
   end
 
   private
 
-  def find_order
-    @order = current_order
-    @order.user_id = current_user.id if user_signed_in?
+  def set_cart
+    @cart = Order.find_by(id: session[:order_id], status: :inprogress) unless Order.find_by(id: session[:order_id]).nil?
   end
 
   def show_line_total
-    @cart.order_items.each do |item|
-      item.total = item.unit_price * item.quantity
+    unless @cart&.order_items.nil?
+      @cart.order_items.each do |item|
+        item.total = item.unit_price * item.quantity
+        item.save
+      end
     end
   end
 
   def show_total
-    @cart.total = @cart.order_items.map(&:total).inject(:+)
+    unless @cart.nil?
+      @cart.total = @cart.order_items.map(&:total).inject(:+) unless @cart.nil?
+      save_cart
+    end
+  end
+
+  def save_cart
+    @cart.save
   end
 end

@@ -23,7 +23,8 @@ Category.create(category: 'Sides')
 Category.create(category: 'Deserts')
 category = Category.find_by(category: 'Juice')
 item = category.items.new(title: 'Water Melon Juice', description: 'Refreshing Fresh Juice', price: 3.99)
-item.item_picture.attach(io: File.open(Rails.root.join('app/assets/images/watermelon.jpg').to_s),filename: 'watermelon.jpg', content_type: 'image/jpg')
+item.item_picture.attach(io: File.open(Rails.root.join('app/assets/images/watermelon.jpg').to_s), filename: 'watermelon.jpg',
+                         content_type: 'image/jpg')
 item.save
 
 item = category.items.new(title: 'Coffee', description: 'get your daily caffeine', price: 3.99)

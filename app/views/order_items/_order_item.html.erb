@@ -5,10 +5,15 @@
   <td><%= order_item.quantity %></td>
   <td><%= order_item.total %></td>
   <td><%= link_to 'Show Item',item_path(order_item.item), class: "btn btn-dark"%></td>
+  <%if order_item.order.inprogress?%>
   <td><%= link_to 'Increase Quantity',cart_path(item_id: order_item.item, increase: true), method: :patch, class: "btn btn-dark"%></td>
-  <td><%= link_to 'Decrease Quantity',cart_path(item_id: order_item.item), method: :patch, class: "btn btn-dark"%></td>
-  <%# <td><%= link_to 'Remove Item From Cart', item_path(item),
+  <%if order_item.quantity > 1%>
+    <td><%= link_to 'Decrease Quantity',cart_path(item_id: order_item.item), method: :patch, class: "btn btn-dark"%></td>
+  <%else%>
+  <td><%= link_to 'Remove Item From Cart', cart_path(item_id:order_item.item),
               method: :delete,
-              data: { confirm: 'Are you sure?' },class: "btn btn-dark" %><%#</td> %>
+              data: { confirm: 'Are you sure?' },class: "btn btn-dark" %></td>
+  <%end%>
+  <%end%>
 </tr>
 

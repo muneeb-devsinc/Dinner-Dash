@@ -8,7 +8,6 @@ class CreateOrderItems < ActiveRecord::Migration[5.2]
       t.decimal :unit_price
 
       t.timestamps
-
     end
   end
 end

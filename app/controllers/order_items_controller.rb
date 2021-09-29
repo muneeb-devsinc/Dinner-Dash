@@ -5,25 +5,11 @@ class OrderItemsController < ApplicationController
   def create
     @order_item = create_order
     @order_item.increment!(:quantity)
-    @order.user_id = current_user.id if user_signed_in?
-    flash[:notice] = 'Item added to cart' if @order_item.save
-    session[:order_id] = @order.id
+    if @order_item.save
+      session[:order_id] = @order.id
+      flash[:notice] = 'Item added to cart'
+    end
     redirect_to items_path
-  end
-
-  def update
-    @order_item = order.order_items.find(params[:id])
-    @order_item.update(order_params)
-    @order_items = current_order.order_items
-  end
-
-  def destroy
-    @order_item = order.order_items.find(params[:id])
-    @order_item.destroy
-    @order_items = current_order.order_items
-  end
-
-  def show
   end
 
   private
@@ -35,6 +21,8 @@ class OrderItemsController < ApplicationController
   def order
     @order ||= current_order
     @order.user_id = guest_user.id
+    @order.user_id = current_user.id if user_signed_in?
+    @order.save
   end
 
   def create_order

@@ -1,0 +1,30 @@
+<table class="table">
+<tr>
+<td><%= link_to 'All',orders_path, class: "btn btn-dark"%> </td>
+<td><%= link_to 'Ordered',orders_path(status: :ordered), class: "btn btn-dark"%> </td>
+<td><%= link_to 'Paid',orders_path(status: :paid), class: "btn btn-dark"%> </td>
+<td><%= link_to 'Completed',orders_path(status: :completed), class: "btn btn-dark"%> </td>
+<td><%= link_to 'Cancelled',orders_path(status: :cancelled), class: "btn btn-dark"%> </td>
+</tr>
+ <tr>
+    <th>Orders</th>
+    <th>Total</th>
+    <th>Created at</th>
+    <th>Status</th>
+    </tr>
+<%if @orders.present?%>
+<% @orders.each do |order| %>
+    <tr>
+      <td><%= link_to 'Show Order',order_path(order), class: "btn btn-dark"%></td>
+      <td><%= order.total %></td>
+      <td><%= order.created_at %></td>
+      <td><%=order.status%></td>
+      <%if current_user.admin?%>
+        <td><%= link_to 'Mark as paid', order_path(id: order.id, status: :paid),method: :patch, class: "btn btn-dark"%></td>
+        <td><%= link_to 'Complete Order', order_path(id: order.id, status: :completed),method: :patch, class: "btn btn-dark"%></td>
+        <td><%= link_to 'Cancel Order', order_path(id: order.id, status: :cancelled),method: :patch, class: "btn btn-dark"%></td>
+      <%end%>
+    </tr>
+  <% end %>
+  <%end%>
+  </table>
