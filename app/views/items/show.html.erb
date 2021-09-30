@@ -1,4 +1,4 @@
-<%= cl_image_tag(@item.item_picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true) %>
+<%= cl_image_tag(@item.item_picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true, default_image: "cookie.jpeg") %>
 
 <p class= "display-4"><%= @item.title%></p>
 <br>
@@ -6,4 +6,8 @@
 <br>
 <p class ="h3">Price: <%= @item.price%></p>
 <br>
-<td><%= link_to 'Add to Cart',order_items_path(item_id: @item.id, unit_price: @item.price, item_title: @item.title), method: :post,class: "btn btn-dark"%></td>
+<p class ="display-6"><%= @item.status%></p>
+<br>
+<%if @item.active?%>
+  <td><%= link_to 'Add to Cart',order_items_path(item_id: @item.id, unit_price: @item.price, item_title: @item.title), method: :post,class: "btn btn-dark"%></td>
+<%end%>

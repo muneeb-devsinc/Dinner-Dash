@@ -1,6 +1,7 @@
 class UserOrdersController < ApplicationController
   def index
-    @orders = Order.where(user_id: current_user.id).all_orders.order_order
+    user = Order.where(user_id: current_user.id)
+    @orders = params[:status] ? user.show_by_status(params[:status]).order_order : user.all_orders.order_order
   end
 
   def show

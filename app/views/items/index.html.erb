@@ -14,12 +14,21 @@
       <td><%= item.description %></td>
       <td><%= item.price %></td>
       <td><%= render item.categories%></td>
-      <td><%= link_to 'Add to Cart',order_items_path(item_id: item.id, unit_price: item.price, item_title: item.title), method: :post,class: "btn btn-dark"%></td>
-      <td><%= link_to 'Edit Item',edit_item_path(item),class: "btn btn-dark"%></td>
       <td><%= link_to 'Show Item',item_path(item), class: "btn btn-dark"%></td>
-      <td><%= link_to 'Destroy', item_path(item),
+      <%if item.active?%>
+        <td><%= link_to 'Add to Cart',order_items_path(item_id: item.id, unit_price: item.price, item_title: item.title), method: :post,class: "btn btn-dark"%></td>
+      <%end%>
+      <% if current_or_guest_user.admin?%>
+        <td><%= link_to 'Edit Item',edit_item_path(item),class: "btn btn-dark"%></td>
+        <%if item.active?%>
+          <td><%= link_to 'Retire Item', item_path(id: item.id, item: { status: :retired }),method: :patch, class: "btn btn-dark"%></td>
+        <%else%>
+          <td><%= link_to 'Activate Item', item_path(id: item.id, item: {status: :active }),method: :patch, class: "btn btn-dark"%></td>
+        <%end%>
+        <td><%= link_to 'Destroy', item_path(item),
               method: :delete,
               data: { confirm: 'Are you sure?' },class: "btn btn-dark" %></td>
+      <%end%>
     </tr>
   <% end %>
   </table>

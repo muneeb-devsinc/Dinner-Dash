@@ -1,0 +1,22 @@
+<table class="table">
+<% @users.each do |user| %>
+    <tr>
+    <th>Display Name</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th colspan="1"></th>
+    </tr>
+    <tr>
+      <td><%= user.display %></td>
+      <td><%= user.name%></td>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <%if user.admin?%>
+        <td><%= link_to 'Remove Admin',admin_path(id: user, role: :member), method: :patch,class: "btn btn-dark"%></td>
+      <%else%>
+        <td><%= link_to 'Make Admin',admin_path(id: user, role: :admin), method: :patch,class: "btn btn-dark"%></td>
+      <%end%>
+    </tr>
+  <% end %>
+  </table>

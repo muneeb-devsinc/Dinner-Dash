@@ -1,19 +1,21 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.all_orders.order_order
-    @orders = Order.ordered.order_order if params[:status] == 'ordered'
-    @orders = Order.paid.order_order if params[:status] == 'paid'
-    @orders = Order.completed.order_order if params[:status] == 'completed'
-    @orders = Order.cancelled.order_order if params[:status] == 'cancelled'
+    @orders = params[:status] ? Order.show_by_status(order_params[:status]).order_order : Order.all_orders.order_order
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find(order_params[:id])
   end
 
   def update
-    @order = Order.find(params[:id])
-    flash[:notice] = 'Order Updated Successfully' if @order.update(status: params[:status])
+    @order = Order.find(order_params[:id])
+    flash[:notice] = 'Order Updated Successfully' if @order.update(order_params)
     redirect_to orders_path
+  end
+
+  private
+
+  def order_params
+    params.permit(:id, :status)
   end
 end

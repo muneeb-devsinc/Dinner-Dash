@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :orders, dependent: :destroy
+  scope :asc, -> { order('id ASC') }
   enum role: { member: 0, admin: 1 }
   scope :admin, -> { where(role: :admin) }
 end

@@ -5,7 +5,7 @@ class OrderItem < ApplicationRecord
   scope :cart_order, -> { order('order_items.item_id ASC') }
   # attr_accessor :quantity, :total, :unit_price
 
-  # def self.total
-  #   self.total = self.quantity * self.unit_price
-  # end
+  def set_total
+    self.total = quantity * unit_price
+  end
 end

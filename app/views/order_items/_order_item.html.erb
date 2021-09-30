@@ -1,5 +1,5 @@
 <tr>
-  <td><%= cl_image_tag(order_item.item.item_picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true) %></td>
+  <td><%= cl_image_tag(order_item.item.item_picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true, default_image: "cookie.jpeg") %></td>
   <td><%= order_item.item_title %></td>
   <td><%= order_item.unit_price %></td>
   <td><%= order_item.quantity %></td>

@@ -4,7 +4,6 @@ class OrderItemsController < ApplicationController
 
   def create
     @order_item = create_order
-    @order_item.increment!(:quantity)
     if @order_item.save
       session[:order_id] = @order.id
       flash[:notice] = 'Item added to cart'
@@ -15,7 +14,7 @@ class OrderItemsController < ApplicationController
   private
 
   def order_params
-    params.require(:order_item).permit(:item_id, :quantity, :status)
+    params.permit(:item_id, :unit_price, :item_title)
   end
 
   def order
@@ -26,6 +25,6 @@ class OrderItemsController < ApplicationController
   end
 
   def create_order
-    @order.order_items.find_or_initialize_by(item_id: params[:item_id], unit_price: params[:unit_price], item_title: params[:item_title])
+    @order.order_items.find_or_initialize_by(order_params)
   end
 end
