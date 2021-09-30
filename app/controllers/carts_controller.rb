@@ -4,7 +4,12 @@ class CartsController < ApplicationController
   before_action :show_line_total, :show_total
   after_action :destroy_empty_order, only: :destroy
   def show
-    @cart
+    if @cart.nil?
+      redirect_to items_path
+      flash[:alert] = "Cart is Empty"
+    else
+      @cart
+    end
   end
 
   def update
@@ -37,7 +42,7 @@ class CartsController < ApplicationController
   end
 
   def set_cart
-    @cart = Order.find_by(id: session[:order_id], status: :inprogress) unless Order.find_by(id: session[:order_id]).nil?
+    @cart = Order.find_by(id: session[:order_id], status: :inprogress) unless Order.find_by(id: session[:order_id], status: :inprogress).nil?
   end
 
   def show_line_total

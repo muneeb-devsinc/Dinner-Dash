@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    authorize @category
   end
 
   def show
@@ -14,6 +15,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    authorize @category
     if @category.save
       redirect_to categories_path
     else
@@ -23,6 +25,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id])
+    authorize @category
     @category.destroy
 
     redirect_to categories_path

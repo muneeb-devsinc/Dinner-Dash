@@ -5,10 +5,12 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    authorize @item
   end
 
   def create
     @item = Item.new(item_params)
+    authorize @item
     if @item.save
       redirect_to items_path
     else
@@ -18,10 +20,12 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    authorize @item
   end
 
   def update
     @item = Item.find(params[:id])
+    authorize @item
     if @item.update(item_params)
       redirect_to @item
     else
@@ -35,6 +39,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    authorize @item
     @item.destroy
 
     redirect_to items_path

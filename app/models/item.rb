@@ -2,9 +2,10 @@ class Item < ApplicationRecord
   has_one_attached :item_picture
   has_and_belongs_to_many :categories
   has_many :order_items, dependent: :destroy
-  has_many :orders, through: :order_items, dependent: :destroy
+  has_many :orders, through: :order_items
   accepts_nested_attributes_for :categories
-  validates :title, presence: { message: 'Item must have a title' }, uniqueness: { message: 'Item name is not unique' }, allow_blank: false
+  validates :title, presence: { message: 'Item must have a title' }, allow_blank: false
+  validates :title, uniqueness: { case_sensitive: false, message: 'Item name is not unique' }
   validates :price, presence: { message: 'Item must have a price' }, numericality: { greater_than: 0, message: 'Price should be greater than 0' }
   validates :price, format: { with: /\A\d+(?:\.\d{0,2})?\z/, message: 'Price not valid i.e 2.99' }
   validates :description, presence: { message: 'Item must have a description' }, allow_blank: false

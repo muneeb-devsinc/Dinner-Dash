@@ -1,22 +1,22 @@
-class OrderPolicy < ApplicationPolicy
+class UserOrderPolicy < ApplicationPolicy
   attr_reader :user, :order
 
   def initialize(user, order)
     super
     @user = user
-    @order = order
+    @user_order = order
   end
 
   def index?
-    user.present? && admin?
+    user.present?
   end
 
   def show?
-    user.present? && (admin? || owner?)
+    user.present? && (owner? || admin?)
   end
 
   def update?
-    user.present? && admin?
+    user.present?
   end
 
   private
