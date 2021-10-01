@@ -2,7 +2,7 @@
 
 class AdminController < ApplicationController
   def index
-    @users = User.all.asc
+    @users = User.all.asc.members
     authorize @users, policy_class: AdminPolicy
   end
 

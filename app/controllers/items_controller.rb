@@ -2,7 +2,7 @@
 
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = params[:q] ? Item.ransack(params[:q]).result : Item.all
   end
 
   def new
@@ -42,6 +42,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :item_picture, :status, category_ids: [])
+    params.require(:item).permit(:title, :description, :price, :item_picture, :status, :q, category_ids: [])
   end
 end

@@ -49,8 +49,10 @@
         <%end%>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <%= search_form_for(@q, url: search_path , method: :get)  do |f| %>
+          <%= f.search_field :title_cont, placeholder: "Search Product" %>
+          <%= f.submit %>
+        <% end %>
       </form>
     </div>
   </div>

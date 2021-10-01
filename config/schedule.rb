@@ -11,7 +11,13 @@
 case @environment
 when 'development'
   set :output, 'log/whenever.log'
-  every 1.minute do
+  every 7.days do
+    rake 'delete:old_inprogress_orders'
+  end
+
+when 'production'
+  set :output, 'log/whenever.log'
+  every 7.days do
     rake 'delete:old_inprogress_orders'
   end
 end

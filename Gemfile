@@ -88,3 +88,5 @@ gem 'devise-guests'
 gem 'sidekiq'
 
 gem 'whenever'
+
+gem 'ransack'

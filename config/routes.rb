@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :user_orders, only: %i[index update show]
   resources :admin, only: %i[index update]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resource :search, only: :show
+  match '*unmatched', to: 'application#route_not_found', via: :all
   root 'items#index'
 end
