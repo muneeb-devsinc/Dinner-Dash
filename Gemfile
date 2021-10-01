@@ -84,3 +84,7 @@ gem 'active_storage_validations', '~> 0.9.5'
 gem 'pundit'
 
 gem 'devise-guests'
+
+gem 'sidekiq'
+
+gem 'whenever'

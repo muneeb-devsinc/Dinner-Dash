@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   def index
     @orders = params[:status] ? Order.show_by_status(order_params[:status]).order_order : Order.all_orders.order_order

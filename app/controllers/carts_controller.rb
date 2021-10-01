@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 class CartsController < ApplicationController
   include Sessionable
   before_action :set_cart
+  before_action :price_change
   before_action :show_line_total, :show_total
   after_action :destroy_empty_order, only: :destroy
   def show
     if @cart.nil?
       redirect_to items_path
-      flash[:alert] = "Cart is Empty"
+      flash[:alert] = 'Cart is Empty'
     else
       @cart
     end
@@ -67,5 +70,16 @@ class CartsController < ApplicationController
 
   def save_cart
     @cart.save
+  end
+
+  def price_change
+    price_change_helper if @cart.present?
+  end
+
+  def price_change_helper
+    @cart.order_items.each do |order_item|
+      order_item.unit_price = order_item.item.price if order_item.unit_price != order_item.item.price
+      order_item.save!
+    end
   end
 end

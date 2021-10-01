@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ItemsController < ApplicationController
   def index
     @items = Item.all
@@ -11,11 +13,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     authorize @item
-    if @item.save
-      redirect_to items_path
-    else
-      render 'new'
-    end
+    @item.save ? (redirect_to items_path) : (render 'new')
   end
 
   def edit
@@ -26,11 +24,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     authorize @item
-    if @item.update(item_params)
-      redirect_to @item
-    else
-      render 'edit'
-    end
+    @item.update(item_params) ? (redirect_to @item) : (render 'edit')
   end
 
   def show

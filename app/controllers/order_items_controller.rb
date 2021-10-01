@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrderItemsController < ApplicationController
   include Sessionable
   before_action :order
@@ -19,8 +21,7 @@ class OrderItemsController < ApplicationController
 
   def order
     @order ||= current_order
-    @order.user_id = guest_user.id
-    @order.user_id = current_user.id if user_signed_in?
+    @order.user_id = user_signed_in? ? current_user.id : guest_user.id
     @order.save
   end
 

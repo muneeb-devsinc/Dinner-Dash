@@ -9,5 +9,8 @@
 <p class ="display-6"><%= @item.status%></p>
 <br>
 <%if @item.active?%>
-  <td><%= link_to 'Add to Cart',order_items_path(item_id: @item.id, unit_price: @item.price, item_title: @item.title), method: :post,class: "btn btn-dark"%></td>
+  <%= link_to 'Add to Cart',order_items_path(item_id: @item.id, unit_price: @item.price, item_title: @item.title), method: :post,class: "btn btn-dark"%>
 <%end%>
+<%= link_to 'To Cart', cart_path, class:"btn btn-dark"%>
+<%= link_to 'Back', root_path, class:"btn btn-dark"%>
+

@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def user_not_authorized()
+  def user_not_authorized
     flash[:alert] = 'Unauthorized Action'
     redirect_to(request.referer || root_path)
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     cart_path
   end
 end
