@@ -1,0 +1,4 @@
+Old Inprogress Orders:
+  :cron: 1 * * * *
+  :class: delete::old_inprogress_orders
+  :queue: default
