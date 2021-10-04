@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web, at: '/sidekiq'
+
   devise_for :users
   resources :order_items
   resources :items
@@ -11,7 +14,7 @@ Rails.application.routes.draw do
   resources :admin, only: %i[index update]
   resource :search, only: :show
   root 'items#index'
-  get ':not_active_storage',
-      to: 'application#route_not_found',
-      constraints: { not_active_storage: %r{(?!rails/active_storage/blobs).*} }
+  #get ':not_active_storage',
+      #to: 'application#route_not_found',
+      #constraints: { not_active_storage: %r{(?!rails/active_storage/blobs).*} }
 end
