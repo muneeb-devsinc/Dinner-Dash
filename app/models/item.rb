@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Item < ApplicationRecord
   has_one_attached :item_picture
   has_and_belongs_to_many :categories
