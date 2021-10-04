@@ -2,7 +2,7 @@
 
 class ItemsController < ApplicationController
   def index
-    @items = params[:q] ? Item.ransack(params[:q]).result : Item.all
+    @items = params[:q] ? Item.ransack(params[:q]).result : Item.index_order.all
     @items = @items.page(params[:page]).per(5)
   end
 

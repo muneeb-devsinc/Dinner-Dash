@@ -13,6 +13,7 @@ class Item < ApplicationRecord
   validates :description, presence: { message: 'Item must have a description' }, allow_blank: false
   before_create :set_default_image
   scope :active, -> { where(status: :active) }
+  scope :index_order, -> { order('items.title ASC')}
   # validates :categories, presence: { message: 'Item must belong to atleast one Category' }
   enum status: { active: 0, retired: 1 }
 
