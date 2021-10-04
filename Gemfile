@@ -90,3 +90,5 @@ gem 'sidekiq'
 gem 'whenever'
 
 gem 'ransack'
+
+gem 'kaminari'
