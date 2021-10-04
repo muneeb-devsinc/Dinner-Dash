@@ -95,4 +95,4 @@ gem 'ransack'
 
 gem 'kaminari'
 
-gem "sidekiq-cron", "~> 1.1"
+gem 'sidekiq-cron', '~> 1.1'
