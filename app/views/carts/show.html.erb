@@ -1,28 +1,26 @@
 <h1>Shopping Cart</h1>
-<%if @cart.nil?%>
+<%if @cart.nil? %>
   <h2>Cart is Empty</h2>
 <% else %>
-<table class="table">
+  <table class='table'>
     <tr>
-    <th colspan="1">
-    <th>Title</th>
-    <th>Unit Price</th>
-    <th>Quantity</th>
-    <th>Line_item total</th>
-    <th colspan="2"></th>
+      <th colspan='1'>
+      <th>Title</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th>Line_item total</th>
+      <th colspan='2'></th>
     </tr>
-  <%= render @cart.order_items.cart_order %>
-  <tr>
-  <td colspan="4"></td>
-  <td>Total</td>
-  <td><%= @cart.total%></td>
-  </tr>
-
-  <tr>
-  <td colspan="5"></td>
-  <td><%= link_to 'Checkout',user_order_path(id: @cart , status: :paid), method: :patch, class: "btn btn-dark"%></td>
-  </tr>
-
-</table>
+    <%= render @all_items %>
+    <tr>
+      <td colspan='4'></td>
+      <td>Total</td>
+      <td><%= @cart.total %></td>
+    </tr>
+    <tr>
+      <td colspan='5'></td>
+      <td><%= link_to 'Checkout',user_order_path(id: @cart , status: :paid), method: :patch, class: 'btn btn-dark' %></td>
+    </tr>
+  </table>
 <%end%>
 

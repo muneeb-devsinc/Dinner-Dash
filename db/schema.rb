@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_30_161644) do
+ActiveRecord::Schema.define(version: 2021_10_05_121426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,9 @@ ActiveRecord::Schema.define(version: 2021_09_30_161644) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "item_id"
     t.index ["category"], name: "index_categories_on_category", unique: true
+    t.index ["item_id"], name: "index_categories_on_item_id"
   end
 
   create_table "categories_items", id: false, force: :cascade do |t|
@@ -54,12 +56,14 @@ ActiveRecord::Schema.define(version: 2021_09_30_161644) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.decimal "price"
+    t.string "title", null: false
+    t.string "description", null: false
+    t.decimal "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["title"], name: "index_items_on_title", unique: true
   end
 
@@ -68,10 +72,10 @@ ActiveRecord::Schema.define(version: 2021_09_30_161644) do
     t.bigint "item_id", null: false
     t.bigint "order_id", null: false
     t.decimal "total", default: "0.0"
-    t.decimal "unit_price"
+    t.decimal "unit_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "item_title"
+    t.string "item_title", null: false
     t.index ["item_id"], name: "index_order_items_on_item_id"
     t.index ["order_id", "item_id"], name: "index_order_items_on_order_id_and_item_id", unique: true
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -95,7 +99,7 @@ ActiveRecord::Schema.define(version: 2021_09_30_161644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.string "display", default: "User"
+    t.string "display_name", default: "User"
     t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   resources :orders
   resources :user_orders, only: %i[index update show]
   resources :admin, only: %i[index update]
-  resource :search, only: :show
   root 'items#index'
-  #get ':not_active_storage',
-      #to: 'application#route_not_found',
-      #constraints: { not_active_storage: %r{(?!rails/active_storage/blobs).*} }
+
+  get ':not_active_storage',
+      to: 'application#route_not_found',
+      constraints: { not_active_storage: %r{(?!rails/active_storage/blobs).*} }
 end

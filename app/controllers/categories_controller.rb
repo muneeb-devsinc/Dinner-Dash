@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+  before_action :set_category, only: %i[show destroy]
   def index
     @categories = Category.all
   end
@@ -11,25 +12,37 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
-    @category = @category.items
+    @category_items = @category.items.includes(%i[items_categories categories]).with_attached_picture.sorted_by_title
   end
 
   def create
     @category = Category.new(category_params)
     authorize @category
-    @category.save ? (redirect_to categories_path) : (render 'new')
+    if @category.save!
+      flash[:notice] = 'Category Created'
+      (redirect_to categories_path)
+    else
+      render 'new'
+    end
   end
 
   def destroy
-    @category = Category.find(params[:id])
     authorize @category
-    @category.destroy
-
+    if @category.destroy!
+      flash[:notice] = 'Category Removed'
+    else
+      flash[:alert] = 'Category Could Not Be Removed'
+    end
     redirect_to categories_path
   end
 
+  private
+
   def category_params
-    params.require(:category).permit(:category)
+    params.permit(:id, :category)
+  end
+
+  def set_category
+    @category = Category.find(params[:id])
   end
 end

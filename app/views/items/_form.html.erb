@@ -8,53 +8,49 @@
       </h2>
       <ul>
         <% @item.errors.each do |attr,msg| %>
-          <li><%= msg %></li>
+          <li><%= attr %> <%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <%= form.hidden_field :user_id %>
-
   <div class='mb3'>
-    <%= form.label :title, class: 'form-label'%>
-    <%= form.text_field :title, class:'form-control'%>
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class:'form-control' %>
   </div>
   <br>
   <div class='mb3'>
-    <%= form.label :description, class: 'form-label'%>
-    <%= form.text_field :description, class: 'form-control'%>
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_field :description, class: 'form-control' %>
   </div>
   <br>
   <div class='mb3'>
-    <%= form.label :price, class: 'form-label'%>
-    <%= form.number_field :price, step: :any, class: 'form-control'%>
+    <%= form.label :price, class: 'form-label' %>
+    <%= form.number_field :price, step: :any, class: 'form-control' %>
   </div>
   <br>
-  <div class="mb3">
+  <div class='mb3'>
     <%= form.label :category %>
     <br>
-    <div class="form-check">
+    <div class='form-check'>
     <%= form.collection_check_boxes :category_ids, Category.order(:category).all, :id, :category, class: 'form-check-input' %>
     </div>
   </div>
   <br>
   <div class='mb3'>
-    <%= form.file_field :item_picture, direct_upload: true %>
+    <%= form.file_field :picture %>
   </div>
   <br>
-  <%if @item.id.present?%>
-  <div class="mb3">
-     <%= cl_image_tag(@item.item_picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true, default_image: "cookie.jpeg") %>
+  <%if @item.id.present? %>
+  <div class='mb3'>
+     <%= cl_image_tag(@item.picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true, default_image: 'cookie.jpeg') %>
   </div>
   <br>
   <div class='mb3'>
-      <%=form.submit "Update Item", data: { disable_with: "Saving..." }, class: "btn btn-primary" %>
+      <%=form.submit 'Update Item', data: { disable_with: 'Saving...' }, class: 'btn btn-primary' %>
   </div>
-
-  <%else%>
+  <% else %>
     <div class='mb3'>
-    <%=form.submit "Add Item", data: { disable_with: "Saving..." }, class: "btn btn-primary" %>
+    <%= form.submit 'Add Item', data: { disable_with: 'Saving...' }, class: 'btn btn-primary' %>
     </div>
-  <%end%>
-
-<%end%>
+  <% end %>
+<% end %>

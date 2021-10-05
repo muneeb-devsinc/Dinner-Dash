@@ -71,8 +71,6 @@ group :development, :test do
   gem 'rubocop-rspec' # or gem 'rubocop-rspec' depending on your test suite
 end
 
-gem 'solargraph'
-
 gem 'devise'
 
 gem 'bootstrap'
@@ -96,3 +94,7 @@ gem 'ransack'
 gem 'kaminari'
 
 gem 'sidekiq-cron', '~> 1.1'
+
+gem 'resolv-replace'
+
+gem 'bullet', group: 'development'

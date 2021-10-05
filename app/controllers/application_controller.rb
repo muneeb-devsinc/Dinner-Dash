@@ -2,14 +2,17 @@
 
 class ApplicationController < ActionController::Base
   include Pundit
+
   protect_from_forgery with: :exception
+
   before_action :set_search
   before_action :configure_permitted_parameters, if: :devise_controller?
-  include Sessionable
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ::ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ::NameError, with: :error_occurred
-  rescue_from ::ActionController::RoutingError, with: :error_occurred
+
+  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # rescue_from NameError, with: :route_not_found
+  # rescue_from ActionController::RoutingError, with: :route_not_found
+
   def route_not_found
     render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
   end
@@ -17,8 +20,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :display) }
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :display) }
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :display_name) }
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :display_name) }
   end
 
   def record_not_found

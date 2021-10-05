@@ -1,16 +1,16 @@
-<%= cl_image_tag(@item.item_picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true, default_image: "cookie.jpeg") %>
+<%= cl_image_tag(@item.picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true, default_image: 'cookie.jpeg') %>
 
-<p class= "display-4"><%= @item.title%></p>
+<p class= 'display-4'><%= @item.title %></p>
 <br>
-<p class ="display-6"><%= @item.description%></p>
+<p class ='display-6'><%= @item.description %></p>
 <br>
-<p class ="h3">Price: <%= @item.price%></p>
+<p class ='h3'>Price: <%= @item.price %></p>
 <br>
-<p class ="display-6"><%= @item.status%></p>
+<p class ='display-6'><%= @item.status %></p>
 <br>
-<%if @item.active?%>
-  <%= link_to 'Add to Cart',order_items_path(item_id: @item.id, unit_price: @item.price, item_title: @item.title), method: :post,class: "btn btn-dark"%>
-<%end%>
-<%= link_to 'To Cart', cart_path, class:"btn btn-dark"%>
-<%= link_to 'Back', root_path, class:"btn btn-dark"%>
+<% if @item.active? %>
+  <%= link_to 'Add to Cart',order_items_path(item_id: @item.id, unit_price: @item.price, item_title: @item.title), method: :post,class: 'btn btn-dark' %>
+<% end %>
+<%= link_to 'To Cart', cart_path, class:'btn btn-dark' %>
+<%= link_to 'Back', root_path, class:'btn btn-dark' %>
 

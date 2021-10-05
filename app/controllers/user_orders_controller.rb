@@ -28,6 +28,6 @@ class UserOrdersController < ApplicationController
     @order = Order.find_by(id: session[:order_id])
     authorize @order, policy_class: UserOrderPolicy
     @order.user_id = current_user.id
-    flash[:notice] = @order.update(status: :ordered) ? 'Order Created' : 'Order failed to Created'
+    flash[:notice] = @order.update!(status: :order_placed) ? 'Order Created' : 'Order failed to Created'
   end
 end

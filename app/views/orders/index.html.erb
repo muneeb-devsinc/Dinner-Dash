@@ -1,11 +1,11 @@
 <table class="table">
 <tr>
 <td><%= link_to 'All',orders_path, class: "btn btn-dark"%> </td>
-<td><%= link_to 'Ordered',orders_path(status: :ordered), class: "btn btn-dark"%> </td>
-<td><%= link_to 'Paid',orders_path(status: :paid), class: "btn btn-dark"%> </td>
-<td><%= link_to 'Completed',orders_path(status: :completed), class: "btn btn-dark"%> </td>
-<td><%= link_to 'Cancelled',orders_path(status: :cancelled), class: "btn btn-dark"%> </td>
+<td><%= link_to 'Ordered',orders_path(status: :order_placed), class: 'btn btn-dark'%> </td>
+<td><%= link_to 'Paid',orders_path(status: :paid), class: 'btn btn-dark'%> </td>
+<td><%= link_to 'Completed',orders_path(status: :completed), class: 'btn btn-dark'%> </td>
+<td><%= link_to 'Cancelled',orders_path(status: :cancelled), class: 'btn btn-dark'%> </td>
 </tr>
 <%= render 'orders'%>
 
-<%= link_to 'Back',items_path, class: "btn btn-dark"%>
+<%= link_to 'Back',items_path, class: 'btn btn-dark'%>

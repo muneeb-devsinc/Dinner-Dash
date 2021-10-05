@@ -6,9 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :orders, dependent: :nullify
-  validates :display, length: { minimum: 2, maximum: 32 }, allow_blank: true
-  scope :members, -> { where.not(name: nil) }
-  scope :asc, -> { order('id ASC') }
+
   enum role: { member: 0, admin: 1 }
-  scope :admin, -> { where(role: :admin) }
+
+  validates :display_name, length: { minimum: 2, maximum: 32 }, allow_blank: true
+
+  scope :members_only, -> { where.not(name: nil) }
 end

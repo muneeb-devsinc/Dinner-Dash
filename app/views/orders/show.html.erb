@@ -1,7 +1,7 @@
 
-<table class="table">
+<table class='table'>
   <tr>
-    <th colspan="1"></th>
+    <th colspan='1'></th>
     <th>Customer Name</th>
     <th>Customer Email</th>
     <th>Created at</th>
@@ -9,27 +9,27 @@
     <th>Updated at</th>
   </tr>
   <tr>
-    <td colspace="1"></td>
+    <td colspace='1'></td>
     <td><%=@order.user.name%></td>
     <td><%=@order.user.email%></td>
     <td><%=@order.created_at%></td>
     <td><%=@order.status%></td>
     <td><%=@order.updated_at%></td>
   </tr>
-  <tr class="blank_row">
-    <td colspan="3"></td>
+  <tr class='blank_row'>
+    <td colspan='3'></td>
   </tr>
   <tr>
-    <th colspan="1">
+    <th colspan='1'>
     <th>Title</th>
     <th>Unit Price</th>
     <th>Quantity</th>
     <th>Line_item total</th>
-    <th colspan="2"></th>
+    <th colspan='2'></th>
   </tr>
-  <%= render @order.order_items.cart_order %>
+  <%= render @order_items %>
   <tr>
-    <td colspan="4"></td>
+    <td colspan='4'></td>
     <td>Total</td>
     <td><%= @order.total%></td>
   </tr>

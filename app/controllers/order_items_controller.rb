@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class OrderItemsController < ApplicationController
-  include Sessionable
   before_action :order
 
   def create
     @order_item = create_order
-    if @order_item.save
+    if @order_item.save!
       session[:order_id] = @order.id
       flash[:notice] = 'Item added to cart'
     end
@@ -22,10 +21,18 @@ class OrderItemsController < ApplicationController
   def order
     @order ||= current_order
     @order.user_id = user_signed_in? ? current_user.id : guest_user.id
-    @order.save
+    @order.save!
   end
 
   def create_order
     @order.order_items.find_or_initialize_by(order_params)
+  end
+
+  def current_order
+    if Order.find_by(id: session[:order_id], status: :in_progress).nil?
+      Order.new
+    else
+      Order.find_by(id: session[:order_id], status: :in_progress)
+    end
   end
 end

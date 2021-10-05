@@ -1,8 +1,8 @@
-<%= form_with model: @category, local: true  do |form|%>
+<%= form_with model: @category, local: true  do |form| %>
   <% if @category.errors.any? %>
-    <div id="error_explanation">
+    <div id='error_explanation'>
       <h2>
-        <%= pluralize(@category.errors.count, "error") %> prohibited
+        <%= pluralize(@category.errors.count, 'error') %> prohibited
         this category from being saved:
       </h2>
       <ul>
@@ -13,11 +13,11 @@
     </div>
   <% end %>
   <div class='mb3'>
-    <%= form.label :category, class: 'form-label'%>
-    <%= form.text_field :category, class:'form-control'%>
+    <%= form.label :category, class: 'form-label' %>
+    <%= form.text_field :category, class:'form-control' %>
   </div>
   <br>
   <div class='mb3'>
-    <%=form.submit "Add Category", data: { disable_with: "Saving..." }, class: "btn btn-primary" %>
+    <%= form.submit 'Add Category', data: { disable_with: 'Saving...' }, class: 'btn btn-primary' %>
   </div>
-  <%end%>
+<%end%>
