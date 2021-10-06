@@ -55,8 +55,8 @@ item = Item.new(title: 'Coca Cola',
                 category_ids: [drinks.id, cold_drinks.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/coca_cola.jpg').to_s),
-                         filename: 'coca_cola.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'coca_cola.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Sprite',
@@ -65,8 +65,8 @@ item = Item.new(title: 'Sprite',
                 category_ids: [drinks.id, cold_drinks.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/sprite.jpeg').to_s),
-                         filename: 'sprite.jpeg',
-                         content_type: 'image/jpeg')
+                    filename: 'sprite.jpeg',
+                    content_type: 'image/jpeg')
 item.save!
 
 item = Item.new(title: 'Fanta',
@@ -75,8 +75,8 @@ item = Item.new(title: 'Fanta',
                 category_ids: [drinks.id, cold_drinks.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/fanta.jpg').to_s),
-                         filename: 'fanta.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'fanta.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Sweet Potato Crostini',
@@ -85,8 +85,8 @@ item = Item.new(title: 'Sweet Potato Crostini',
                 category_ids: [appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/sweet.jpg').to_s),
-                         filename: 'sweet.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'sweet.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Jalapeno Popper Cheese Balls',
@@ -94,8 +94,8 @@ item = Item.new(title: 'Jalapeno Popper Cheese Balls',
                 price: 9.99, category_ids: [appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/cheese.jpg').to_s),
-                         filename: 'cheese.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'cheese.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Soft Pretzel Bites',
@@ -104,8 +104,8 @@ item = Item.new(title: 'Soft Pretzel Bites',
                 category_ids: [appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/pretzel.jpg').to_s),
-                         filename: 'pretzel.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'pretzel.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Chicken Wings',
@@ -114,8 +114,8 @@ item = Item.new(title: 'Chicken Wings',
                 category_ids: [appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/wings.jpg').to_s),
-                         filename: 'wings.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'wings.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Buffalo Chicken Wings',
@@ -124,8 +124,8 @@ item = Item.new(title: 'Buffalo Chicken Wings',
                 category_ids: [appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/buffalo.jpg').to_s),
-                         filename: 'buffalo.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'buffalo.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Zucchini Chips',
@@ -134,8 +134,8 @@ item = Item.new(title: 'Zucchini Chips',
                 category_ids: [appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/zucchini.jpg').to_s),
-                         filename: 'zucchini.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'zucchini.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Sundried Tomato Garlic Butter Bruschetta',
@@ -144,8 +144,8 @@ item = Item.new(title: 'Sundried Tomato Garlic Butter Bruschetta',
                 category_ids: [appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/tomato.jpg').to_s),
-                         filename: 'tomato.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'tomato.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Beetroot and Feta Cheese Salad',
@@ -154,8 +154,8 @@ item = Item.new(title: 'Beetroot and Feta Cheese Salad',
                 category_ids: [appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/beetroot.jpg').to_s),
-                         filename: 'beetroot.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'beetroot.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Cedar-Plank Salmon',
@@ -164,8 +164,8 @@ item = Item.new(title: 'Cedar-Plank Salmon',
                 category_ids: [main_course.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/salmon.jpg').to_s),
-                         filename: 'salmon.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'salmon.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Braised Chicken Legs',
@@ -174,8 +174,8 @@ item = Item.new(title: 'Braised Chicken Legs',
                 category_ids: [main_course.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/chicken.jpg').to_s),
-                         filename: 'chicken.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'chicken.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Seared Scallops',
@@ -184,8 +184,8 @@ item = Item.new(title: 'Seared Scallops',
                 category_ids: [main_course.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/scallops.jpg').to_s),
-                         filename: 'scallops.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'scallops.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Grilled Pizza',
@@ -194,8 +194,8 @@ item = Item.new(title: 'Grilled Pizza',
                 category_ids: [main_course.id, appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/pizza.jpg').to_s),
-                         filename: 'pizza.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'pizza.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Double-Stack Mushroom and Chicken Cheeseburgers',
@@ -204,8 +204,8 @@ item = Item.new(title: 'Double-Stack Mushroom and Chicken Cheeseburgers',
                 category_ids: [main_course.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/burger.jpg').to_s),
-                         filename: 'burger.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'burger.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Baked Macaroni and Cheese',
@@ -214,8 +214,8 @@ item = Item.new(title: 'Baked Macaroni and Cheese',
                 category_ids: [sides.id, appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/mac.jpg').to_s),
-                         filename: 'mac.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'mac.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Simple Biscuits',
@@ -224,8 +224,8 @@ item = Item.new(title: 'Simple Biscuits',
                 category_ids: [sides.id, appetizers.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/biscuit.jpg').to_s),
-                         filename: 'biscuit.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'biscuit.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Coleslaw',
@@ -234,8 +234,8 @@ item = Item.new(title: 'Coleslaw',
                 category_ids: [sides.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/coleslaw.jpg').to_s),
-                         filename: 'coleslaw.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'coleslaw.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Giant Fruit Danish',
@@ -244,8 +244,8 @@ item = Item.new(title: 'Giant Fruit Danish',
                 category_ids: [deserts.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/danish.jpg').to_s),
-                         filename: 'danish.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'danish.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Ice Cream',
@@ -254,8 +254,8 @@ item = Item.new(title: 'Ice Cream',
                 category_ids: [deserts.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/icecream.jpg').to_s),
-                         filename: 'icecream.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'icecream.jpg',
+                    content_type: 'image/jpg')
 item.save!
 
 item = Item.new(title: 'Samoa Dessert Lasagna',
@@ -264,6 +264,6 @@ item = Item.new(title: 'Samoa Dessert Lasagna',
                 category_ids: [deserts.id])
 
 item.picture.attach(io: File.open(Rails.root.join('app/assets/images/lasagna.jpg').to_s),
-                         filename: 'lasagna.jpg',
-                         content_type: 'image/jpg')
+                    filename: 'lasagna.jpg',
+                    content_type: 'image/jpg')
 item.save!
