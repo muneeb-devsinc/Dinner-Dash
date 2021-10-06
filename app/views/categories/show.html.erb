@@ -1,13 +1,13 @@
 <% if @category.nil? %>
   <h1>No Items in this Category</h1>
 <% else %>
+  <h2>Category: <%= @category.category%></h2>
   <table class='table'>
     <tr>
       <th colspan='1'>
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
-      <th>Category</th>
       <th colspan='1'></th>
     </tr>
     <% @category_items.each do |item| %>
@@ -16,7 +16,6 @@
       <td><%= item.title %></td>
       <td><%= item.description %></td>
       <td><%= item.price %></td>
-      <td><%= render item.categories %></td>
       <% if item.active? %>
         <td><%= link_to 'Add to Cart',order_items_path(item_id: item.id, unit_price: item.price, item_title: item.title), method: :post,class: 'btn btn-dark' %></td>
       <% end %>
@@ -24,5 +23,5 @@
     </tr>
     <% end %>
   </table>
-  <td><%= link_to 'Back to Categories',categories_path, class: 'btn btn-dark' %></td>
+  <td><%= link_to 'Back',url_for(:back), class: 'btn btn-dark' %></td>
 <% end %>

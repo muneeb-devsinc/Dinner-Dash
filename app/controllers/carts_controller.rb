@@ -9,12 +9,7 @@ class CartsController < ApplicationController
   after_action :destroy_empty_order, only: :destroy
 
   def show
-    if @cart.nil?
-      redirect_to items_path
-      flash[:alert] = 'Cart is Empty'
-    else
-      @all_items = @cart.order_items.includes(:item).cart_order
-    end
+    @all_items = @cart.order_items.includes(:item).cart_order unless @cart.nil?
   end
 
   def update
@@ -23,7 +18,7 @@ class CartsController < ApplicationController
     else
       @cart_item.quantity -= 1 unless @cart_item.quantity.zero?
     end
-    @cart_item.save!
+    @cart_item.save
 
     save_cart
 
@@ -31,7 +26,7 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    if @cart_item.destroy!
+    if @cart_item.destroy
       flash[:notice] = 'Item Removed from cart successfully'
     else
       flash[:alert] = 'Error Removing Item'
@@ -44,7 +39,7 @@ class CartsController < ApplicationController
 
   def destroy_empty_order
     set_cart
-    @cart.destroy! if @cart.order_items.blank?
+    @cart.destroy if @cart.order_items.blank?
   end
 
   def cart_params
@@ -63,7 +58,7 @@ class CartsController < ApplicationController
     ActiveRecord::Base.transaction do
       @cart.order_items.each do |item|
         item.total = item.unit_price * item.quantity
-        item.save!
+        item.save
       end
     end
   end
@@ -80,7 +75,7 @@ class CartsController < ApplicationController
   end
 
   def save_cart
-    @cart.save!
+    @cart.save
   end
 
   def price_change
@@ -91,7 +86,7 @@ class CartsController < ApplicationController
     ActiveRecord::Base.transaction do
       @cart.order_items.includes([:item]).each do |order_item|
         order_item.unit_price = order_item.item.price if order_item.unit_price != order_item.item.price
-        order_item.save!
+        order_item.save
       end
     end
   end

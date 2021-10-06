@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 
   def update
     authorize @item
-    if @item.update!(item_params)
+    if @item.update(item_params)
       flash[:notice] = 'Item Updated Successfully'
       (redirect_to @item)
     else
@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
 
   def destroy
     authorize @item
-    if @item.destroy!
+    if @item.destroy
       flash[:notice] = 'Item Removed'
     else
       flash[:alert] = 'Item Could Not Be Removed'

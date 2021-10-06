@@ -98,3 +98,7 @@ gem 'sidekiq-cron', '~> 1.1'
 gem 'resolv-replace'
 
 gem 'bullet', group: 'development'
+
+gem 'figaro'
+
+gem 'toastr-rails'

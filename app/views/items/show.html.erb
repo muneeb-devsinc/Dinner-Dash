@@ -11,6 +11,5 @@
 <% if @item.active? %>
   <%= link_to 'Add to Cart',order_items_path(item_id: @item.id, unit_price: @item.price, item_title: @item.title), method: :post,class: 'btn btn-dark' %>
 <% end %>
-<%= link_to 'To Cart', cart_path, class:'btn btn-dark' %>
-<%= link_to 'Back', root_path, class:'btn btn-dark' %>
+<%= link_to 'Back', url_for(:back), class:'btn btn-dark' %>
 

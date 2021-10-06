@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     authorize @category
-    if @category.save!
+    if @category.save
       flash[:notice] = 'Category Created'
       redirect_to categories_path
     else
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     authorize @category
-    if @category.destroy!
+    if @category.destroy
       flash[:notice] = 'Category Removed'
     else
       flash[:alert] = 'Category Could Not Be Removed'

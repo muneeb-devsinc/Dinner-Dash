@@ -10,7 +10,7 @@ class UserOrderPolicy < ApplicationPolicy
   end
 
   def index?
-    user.present?
+    user.present? && (owner? || admin?)
   end
 
   def show?

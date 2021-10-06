@@ -16,12 +16,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= render 'layouts/navbar'%>
-    <% if flash[:notice] %>
-      <p class='alert alert-success' role='alert'><%= notice %></p>
-    <%elsif flash[:alert]%>
-      <p class='alert alert-danger' role='alert'><%= alert %></p>
-    <%end%>
+    <%= render 'layouts/navbar' %>
+    <div id="flash">
+      <%= render 'shared/notice' %>
+    </div>
     <div class = 'container'>
       <br>
       <%= yield %>

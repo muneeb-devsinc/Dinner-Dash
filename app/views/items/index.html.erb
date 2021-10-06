@@ -1,13 +1,13 @@
 <table class='table'>
+  <tr>
+    <th colspan='1'>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th colspan='4'></th>
+  </tr>
   <% @items.each do |item| %>
-    <tr>
-      <th colspan='1'>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th colspan='4'></th>
-    </tr>
     <tr>
       <td><%= cl_image_tag(item.picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true) %></td>
       <td><%= item.title %></td>
@@ -16,7 +16,7 @@
       <td><%= render item.categories %></td>
       <td><%= link_to 'Show Item',item_path(item), class: 'btn btn-dark' %></td>
       <%if item.active? %>
-        <td><%= link_to 'Add to Cart',order_items_path(item_id: item.id, unit_price: item.price, item_title: item.title), method: :post,class: 'btn btn-dark' %></td>
+        <td><%= link_to 'Add to Cart',order_items_path(item_id: item.id, unit_price: item.price, item_title: item.title), method: :post, remote: true,class: 'btn btn-dark' %></td>
       <% end %>
       <% if current_or_guest_user.admin? %>
         <td><%= link_to 'Edit Item',edit_item_path(item),class: 'btn btn-dark' %></td>

@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
 class UserOrdersController < ApplicationController
+  include Checkoutable
+
+  before_action :set_order, only: :show
   def index
     authorize @orders, policy_class: UserOrderPolicy
-    user = Order.where(user_id: current_user.id)
-    @orders = params[:status] ? user.show_by_status(params[:status]).order(:id) : user.not_in_progress.order(:id)
+    @orders = if params[:status]
+                Order.where(user_id: current_user.id).show_by_status(params[:status]).order(:id)
+              else
+                Order.where(user_id: current_user.id).not_in_progress.order(:id)
+              end
   end
 
   def show
-    @order = Order.find(params[:id])
     authorize @order, policy_class: UserOrderPolicy
   end
 
@@ -18,16 +23,14 @@ class UserOrdersController < ApplicationController
       redirect_to items_path
     else
       flash[:alert] = 'User must be logged in to checkout'
+      session[:checkout] = true
       redirect_to user_session_path
     end
   end
 
   private
 
-  def checkout
-    @order = Order.find_by(id: session[:order_id])
-    authorize @order, policy_class: UserOrderPolicy
-    @order.user_id = current_user.id
-    flash[:notice] = @order.update!(status: :order_placed) ? 'Order Created' : 'Order failed to Created'
+  def set_order
+    @order = Order.find(params[:id])
   end
 end
