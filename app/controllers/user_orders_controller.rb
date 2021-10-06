@@ -4,7 +4,7 @@ class UserOrdersController < ApplicationController
   def index
     authorize @orders, policy_class: UserOrderPolicy
     user = Order.where(user_id: current_user.id)
-    @orders = params[:status] ? user.show_by_status(params[:status]).order_order : user.all_orders.order_order
+    @orders = params[:status] ? user.show_by_status(params[:status]).order(:id) : user.not_in_progress.order(:id)
   end
 
   def show

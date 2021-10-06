@@ -1,9 +1,9 @@
 <table class='table'>
 <tr>
-<td><%= link_to 'All',order_user_orders_path, class: 'btn btn-dark'%> </td>
-<td><%= link_to 'Ordered',order_user_orders_path(status: :order_placed), class: 'btn btn-dark'%> </td>
-<td><%= link_to 'Paid',order_user_orders_path(status: :paid), class: 'btn btn-dark'%> </td>
-<td><%= link_to 'Completed',order_user_orders_path(status: :completed), class: 'btn btn-dark'%> </td>
-<td><%= link_to 'Cancelled',order_user_orders_path(status: :cancelled), class: 'btn btn-dark'%> </td>
+<td><%= link_to 'All',user_orders_path, class: 'btn btn-dark'%> </td>
+<td><%= link_to 'Ordered',user_orders_path(status: :order_placed), class: 'btn btn-dark'%> </td>
+<td><%= link_to 'Paid',user_orders_path(status: :paid), class: 'btn btn-dark'%> </td>
+<td><%= link_to 'Completed',user_orders_path(status: :completed), class: 'btn btn-dark'%> </td>
+<td><%= link_to 'Cancelled',user_orders_path(status: :cancelled), class: 'btn btn-dark'%> </td>
 </tr>
 <%= render 'orders/orders'%>
