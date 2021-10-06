@@ -10,16 +10,16 @@ class AdminPolicy < ApplicationPolicy
   end
 
   def index?
-    user.present? && admin?
+    admin?
   end
 
   def update?
-    user.present? && admin?
+    admin?
   end
 
   private
 
   def admin?
-    user.admin?
+    user.present? && user.admin?
   end
 end

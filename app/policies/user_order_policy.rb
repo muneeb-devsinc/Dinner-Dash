@@ -14,7 +14,6 @@ class UserOrderPolicy < ApplicationPolicy
   end
 
   def show?
-    byebug
     user.present? && (owner? || admin?)
   end
 

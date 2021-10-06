@@ -10,20 +10,20 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def new?
-    user.present? && admin?
+    admin?
   end
 
   def create?
-    user.present? && admin?
+    admin?
   end
 
   def destroy?
-    user.present? && admin?
+    admin?
   end
 
   private
 
   def admin?
-    user.admin?
+    user.present? && user.admin?
   end
 end
