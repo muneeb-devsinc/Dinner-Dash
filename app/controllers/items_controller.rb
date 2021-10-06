@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     authorize @item
-    if @item.save!
+    if @item.save
       flash[:notice] = 'Item Created Successfully'
       (redirect_to items_path)
     else

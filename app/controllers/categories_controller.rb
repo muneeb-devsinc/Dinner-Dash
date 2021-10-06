@@ -2,6 +2,7 @@
 
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show destroy]
+
   def index
     @categories = Category.all
   end
@@ -20,7 +21,7 @@ class CategoriesController < ApplicationController
     authorize @category
     if @category.save!
       flash[:notice] = 'Category Created'
-      (redirect_to categories_path)
+      redirect_to categories_path
     else
       render 'new'
     end

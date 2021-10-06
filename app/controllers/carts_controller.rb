@@ -24,7 +24,9 @@ class CartsController < ApplicationController
       @cart_item.quantity -= 1 unless @cart_item.quantity.zero?
     end
     @cart_item.save!
+
     save_cart
+
     redirect_to cart_path
   end
 
@@ -34,6 +36,7 @@ class CartsController < ApplicationController
     else
       flash[:alert] = 'Error Removing Item'
     end
+
     redirect_to cart_path
   end
 
