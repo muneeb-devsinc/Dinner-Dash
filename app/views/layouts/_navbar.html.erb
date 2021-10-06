@@ -20,6 +20,9 @@
         <li class='nav-item'>
           <%= link_to 'My Cart', cart_path, class:'nav-link' %>
         </li>
+        <li class='nav-item'>
+          <p class= 'nav-link'><%= session[:cart_count] %></p>
+        </li>
         <% if user_signed_in?%>
           <% if current_user.admin? %>
             <li class='nav-item'>
