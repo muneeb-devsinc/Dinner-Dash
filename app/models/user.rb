@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :display_name, length: { minimum: 2, maximum: 32 }, allow_blank: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence: true, allow_blank: false
-  validates :password, confirmation: true, presence: true
+  validates :password, confirmation: true, allow_blank: true
 
   scope :members_only, -> { where.not(name: nil) }
 end
