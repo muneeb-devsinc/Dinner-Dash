@@ -12,7 +12,7 @@
       <%if current_or_guest_user.admin? %>
         <td><%= link_to 'Destroy', category_path(category),
               method: :delete,
-              data: { confirm: 'Are you sure? All items associated with only this category will be destroyed' },class: 'btn btn-dark' %></td>
+              data: { confirm: 'Are you sure?' },class: 'btn btn-dark' %></td>
       <%end%>
     </tr>
   <% end %>
