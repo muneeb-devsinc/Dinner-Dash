@@ -9,13 +9,12 @@ class AdminController < ApplicationController
 
   def update
     authorize @user, policy_class: AdminPolicy
-
-    if @user.update(user_params)
+    @user.role = user_params[:role]
+    if @user.save(validate: false)
       flash[:notice] = 'User Successfully Updated'
     else
       flash[:Alert] = 'User Update Unsuccessful'
     end
-
     redirect_to admin_index_path
   end
 
