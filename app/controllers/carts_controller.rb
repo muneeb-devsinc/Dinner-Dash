@@ -16,18 +16,21 @@ class CartsController < ApplicationController
     if params[:increase]
       @cart_item.quantity += 1
     else
-      @cart_item.quantity -= 1 unless @cart_item.quantity.zero?
+      @cart_item.quantity -= 1 unless @cart_item.quantity == 1
     end
     @cart_item.save
-
-    save_cart
-
-    redirect_to cart_path
+    show_line_total
+    show_total
+    respond_to do |format|
+      format.html { redirect_to cart_path }
+      format.js
+    end
   end
 
   def destroy
     if @cart_item.destroy
       flash[:notice] = 'Item Removed from cart successfully'
+      session[:cart_count] -= 1
     else
       flash[:alert] = 'Error Removing Item'
     end
@@ -39,6 +42,7 @@ class CartsController < ApplicationController
 
   def destroy_empty_order
     set_cart
+    session[:cart_count] = 0
     @cart.destroy if @cart.order_items.blank?
   end
 
@@ -56,9 +60,15 @@ class CartsController < ApplicationController
 
   def calculate_line_total
     ActiveRecord::Base.transaction do
-      @cart.order_items.each do |item|
-        item.total = item.unit_price * item.quantity
-        item.save
+      if @cart_item.nil?
+        @cart.order_items.each do |item|
+          item.total = item.unit_price * item.quantity
+          item.save
+        end
+        @cart.save
+      else
+        @cart_item.total = @cart_item.unit_price * @cart_item.quantity
+        @cart_item.save
       end
     end
   end

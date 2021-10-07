@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Pundit
+  include Countable
 
   protect_from_forgery with: :exception
 
@@ -43,9 +44,5 @@ class ApplicationController < ActionController::Base
 
   def set_search
     @q = Item.ransack(params[:q])
-  end
-
-  def set_cart_count
-    session[:cart_count] = Order.find_by(id: session[:order_id], status: :in_progress)&.order_items&.count.to_i
   end
 end

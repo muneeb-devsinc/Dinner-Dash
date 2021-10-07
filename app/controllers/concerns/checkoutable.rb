@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Checkoutable
   def checkout
     @order = Order.find_by(id: session[:order_id])

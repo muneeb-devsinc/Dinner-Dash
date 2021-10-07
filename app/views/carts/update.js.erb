@@ -1,0 +1,3 @@
+$(`#quantity-${'<%= @cart_item.item_id %>'}`).html('<%= @cart_item.quantity %>');
+$(`#item_total-${'<%= @cart_item.item_id %>'}`).html('<%= @cart_item.total %>');
+$(`#cart_total`).html('<%= @cart.total %>')

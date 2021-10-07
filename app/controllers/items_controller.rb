@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i[edit update show destroy]
   def index
     @items = if params[:q]
-               Item.ransack(params[:q]).result
+               Item.search(params[:q]).result
              else
                Item.includes(%i[items_categories categories]).with_attached_picture.sorted_by_title
              end.page(params[:page]).per(5)

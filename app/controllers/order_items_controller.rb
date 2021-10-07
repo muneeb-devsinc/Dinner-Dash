@@ -7,11 +7,11 @@ class OrderItemsController < ApplicationController
   def create
     if @order_item.save
       session[:order_id] = @order.id
-      flash[:notice] = 'Item added to cart'
+      flash.now[:notice] = 'Item added to cart'
+      set_cart_count
     else
-      flash[:alert] = 'Item could not be added to cart'
+      flash.now[:alert] = 'Item could not be added to cart'
     end
-
     respond_to do |format|
       format.html { redirect_to items_path }
       format.js

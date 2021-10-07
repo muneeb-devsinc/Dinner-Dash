@@ -101,4 +101,4 @@ gem 'bullet', group: 'development'
 
 gem 'figaro'
 
-gem 'toastr-rails'
+gem 'jquery-rails'
