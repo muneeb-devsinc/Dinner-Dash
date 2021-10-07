@@ -24,6 +24,7 @@
   SENDMAIL_USERNAME: ' e.g test@devsinc.com'
   SENDMAIL_PASSWORD: 'password'
   MAIL_HOST:         'devsinc.com'
+  DEFAULT_URL: 'yourapp.herokuapp.com'
 
   cloudinary settings
 
