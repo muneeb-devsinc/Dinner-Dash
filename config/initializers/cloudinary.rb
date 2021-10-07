@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Cloudinary.config do |config|
-  config.cloud_name = 'devsinc-muneeb'
-  config.api_key = '568139153526549'
-  config.api_secret = 'FezGGKfskieSm_0xG3ITS7NYSHs'
+  config.cloud_name = ENV['cloud_name']
+  config.api_key = ENV['api_key']
+  config.api_secret = ENV['api_secret']
   config.secure = true
   config.cdn_subdomain = true
 end

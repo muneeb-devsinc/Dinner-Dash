@@ -1,0 +1,5 @@
+$("#flash").html('<%= j render partial: "shared/notice" %>');
+$("#cart").html('<%= session[:cart_count] %>');
+setTimeout(function() {
+    $('.alert').remove();
+}, 2000);

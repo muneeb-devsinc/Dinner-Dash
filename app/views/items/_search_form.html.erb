@@ -1,0 +1,8 @@
+<div class='d-flex'>
+  <form class='pt-2'>
+    <%= search_form_for(@q,url: items_path, method: :get)  do |f| %>
+      <%= f.search_field :title_cont, placeholder: 'Search Product' %>
+      <%= f.submit %>
+    <% end %>
+  </form>
+</div>

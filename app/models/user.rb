@@ -10,6 +10,9 @@ class User < ApplicationRecord
   enum role: { member: 0, admin: 1 }
 
   validates :display_name, length: { minimum: 2, maximum: 32 }, allow_blank: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :name, presence: true, allow_blank: false
+  validates :password, confirmation: true, presence: true
 
   scope :members_only, -> { where.not(name: nil) }
 end

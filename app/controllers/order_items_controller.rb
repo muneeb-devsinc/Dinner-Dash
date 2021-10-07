@@ -2,14 +2,20 @@
 
 class OrderItemsController < ApplicationController
   before_action :order
+  before_action :initialize_order
 
   def create
-    @order_item = create_order
-    if @order_item.save!
+    if @order_item.save
       session[:order_id] = @order.id
-      flash[:notice] = 'Item added to cart'
+      flash.now[:notice] = 'Item added to cart'
+      set_cart_count
+    else
+      flash.now[:alert] = 'Item could not be added to cart'
     end
-    redirect_to items_path
+    respond_to do |format|
+      format.html { redirect_to items_path }
+      format.js
+    end
   end
 
   private
@@ -21,11 +27,11 @@ class OrderItemsController < ApplicationController
   def order
     @order ||= current_order
     @order.user_id = user_signed_in? ? current_user.id : guest_user.id
-    @order.save!
+    @order.save
   end
 
-  def create_order
-    @order.order_items.find_or_initialize_by(order_params)
+  def initialize_order
+    @order_item = @order.order_items.find_or_initialize_by(order_params)
   end
 
   def current_order

@@ -21,7 +21,7 @@
           <%= link_to 'My Cart', cart_path, class:'nav-link' %>
         </li>
         <li class='nav-item'>
-          <p class= 'nav-link'><%= session[:cart_count] %></p>
+          <div class= 'nav-link' id='cart'><%= session[:cart_count] %></div>
         </li>
         <% if user_signed_in?%>
           <% if current_user.admin? %>
@@ -53,12 +53,6 @@
       </ul>
       <div class='d-flex'>
         <h4 class='navbar-text px-4'><%= current_user.display_name if user_signed_in? %></h4>
-        <form class='pt-2'>
-          <%= search_form_for(@q, method: :get)  do |f| %>
-            <%= f.search_field :title_cont, placeholder: 'Search Product' %>
-            <%= f.submit %>
-          <% end %>
-        </form>
       </div>
     </div>
   </div>

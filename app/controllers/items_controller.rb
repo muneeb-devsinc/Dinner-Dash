@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i[edit update show destroy]
   def index
     @items = if params[:q]
-               Item.ransack(params[:q]).result
+               Item.search(params[:q]).result
              else
                Item.includes(%i[items_categories categories]).with_attached_picture.sorted_by_title
              end.page(params[:page]).per(5)
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 
   def update
     authorize @item
-    if @item.update!(item_params)
+    if @item.update(item_params)
       flash[:notice] = 'Item Updated Successfully'
       (redirect_to @item)
     else
@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
 
   def destroy
     authorize @item
-    if @item.destroy!
+    if @item.destroy
       flash[:notice] = 'Item Removed'
     else
       flash[:alert] = 'Item Could Not Be Removed'
