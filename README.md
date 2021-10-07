@@ -3,6 +3,7 @@
 
 * Ruby version : 2.5.8
 * Rails version : 5.2.6
+* PostgreSQL : 13.4
 
 * Configuration
 
@@ -14,7 +15,22 @@
   or
   rails db:create, rails db:migrate and rails db:seed individually to achieve the same goal
 
-  This Application relies on cloudinary for active storage. Please insert your credentials in config/storage.yml and config/initialise/cloudinary.rb
+* Dependencies
+
+  configure the following environment variables before using the application in either application.yml generated using bundle exec figaro install or setting them manually in heroku
+
+  Mailer Settings
+
+  SENDMAIL_USERNAME: ' e.g test@devsinc.com'
+  SENDMAIL_PASSWORD: 'password'
+  MAIL_HOST:         'devsinc.com'
+
+  cloudinary settings
+
+  cloud_name: 'e.g devsinc'
+  api_key: 'Your API key'
+  api_secret: 'Your API secret key'
+  ADDRESS: 'e.g smtp.gmail.com'
 
 
 * Deployment on heroku
