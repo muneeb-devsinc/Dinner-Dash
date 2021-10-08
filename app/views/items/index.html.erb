@@ -26,9 +26,6 @@
         <% else %>
           <td><%= link_to 'Activate Item', item_path(id: item.id, item: {status: :active }),method: :patch, class: 'btn btn-dark' %></td>
         <% end %>
-        <td><%= link_to 'Destroy', item_path(item),
-              method: :delete,
-              data: { confirm: 'Are you sure?' },class: 'btn btn-dark' %></td>
       <% end %>
     </tr>
   <% end %>
