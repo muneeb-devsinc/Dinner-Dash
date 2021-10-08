@@ -17,7 +17,7 @@
             <td><%= link_to 'Mark as paid', order_path(id: order.id, status: :paid),method: :patch, class: 'btn btn-dark' %></td>
           <% end %>
           <td><%= link_to 'Complete Order', order_path(id: order.id, status: :completed),method: :patch, class: 'btn btn-dark' %></td>
-          <td><%= link_to 'Cancel Order', order_path(id: order.id, status: :cancelled),method: :patch, class: 'btn btn-dark' %></td>
+          <td><%= link_to 'Cancel Order', order_path(id: order.id, status: :cancelled),method: :patch,data: {confirm: 'Are you sure you want to cancel this order?'}, class: 'btn btn-dark' %></td>
         <% end %>
       <% end %>
     </tr>

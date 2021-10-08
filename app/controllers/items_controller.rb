@@ -45,11 +45,11 @@ class ItemsController < ApplicationController
 
   def destroy
     authorize item
-    if @item.destroy
-      flash[:notice] = 'Item Removed'
-    else
-      flash[:alert] = 'Item Could Not Be Removed'
-    end
+    flash[:alert] = if @item.destroy
+                      'Item Removed'
+                    else
+                      'Item Could Not Be Removed'
+                    end
     redirect_to items_path
   end
 

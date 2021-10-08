@@ -1,33 +1,37 @@
 <%= render 'search_form' %>
-<table class='table'>
-  <tr>
-    <th colspan='1'>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Category</th>
-    <th colspan='4'></th>
-  </tr>
-  <% @items.each do |item| %>
+<%unless @items.exists? %>
+  <h2>No Items Found</h2>
+<% else %>
+  <table class='table'>
     <tr>
-      <td><%= cl_image_tag(item.picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true) %></td>
-      <td><%= item.title %></td>
-      <td><%= item.description %></td>
-      <td><%= item.price %></td>
-      <td><%= render item.categories %></td>
-      <td><%= link_to 'Show Item',item_path(item), class: 'btn btn-dark' %></td>
-      <%if item.active? %>
-        <td><%= link_to 'Add to Cart',order_items_path(item_id: item.id, unit_price: item.price, item_title: item.title), method: :post, remote: true,class: 'btn btn-dark' %></td>
-      <% end %>
-      <% if current_or_guest_user.admin? %>
-        <td><%= link_to 'Edit Item',edit_item_path(item),class: 'btn btn-dark' %></td>
-        <% if item.active? %>
-          <td><%= link_to 'Retire Item', item_path(id: item.id, item: { status: :retired }),method: :patch, class: 'btn btn-dark' %></td>
-        <% else %>
-          <td><%= link_to 'Activate Item', item_path(id: item.id, item: {status: :active }),method: :patch, class: 'btn btn-dark' %></td>
-        <% end %>
-      <% end %>
+      <th colspan='1'>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th colspan='4'></th>
     </tr>
-  <% end %>
-</table>
-<%= paginate @items %>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= cl_image_tag(item.picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true) %></td>
+        <td><%= item.title %></td>
+        <td><%= item.description %></td>
+        <td><%= item.price %></td>
+        <td><%= render item.categories %></td>
+        <td><%= link_to 'Show Item',item_path(item), class: 'btn btn-dark' %></td>
+        <%if item.active? %>
+          <td><%= link_to 'Add to Cart',order_items_path(item_id: item.id, unit_price: item.price, item_title: item.title), method: :post, remote: true,class: 'btn btn-dark' %></td>
+        <% end %>
+        <% if current_or_guest_user.admin? %>
+          <td><%= link_to 'Edit Item',edit_item_path(item),class: 'btn btn-dark' %></td>
+          <% if item.active? %>
+            <td><%= link_to 'Retire Item', item_path(id: item.id, item: { status: :retired }),method: :patch, class: 'btn btn-dark' %></td>
+          <% else %>
+            <td><%= link_to 'Activate Item', item_path(id: item.id, item: {status: :active }),method: :patch, class: 'btn btn-dark' %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate @items %>
+<% end %>

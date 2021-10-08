@@ -5,16 +5,6 @@
 * Rails version : 5.2.6
 * PostgreSQL : 13.4
 
-* Configuration
-
-  run sudo apt install postgresql-contrib libpq-dev to install database dependencies
-
-  Open Console at the root project directory and type 'bundle install' to install requried gems
-
-  use rails db:setup to initialise, migrate and seed the database
-  or
-  rails db:create, rails db:migrate and rails db:seed individually to achieve the same goal
-
 * Dependencies
 
   configure the following environment variables before using the application in either application.yml generated using bundle exec figaro install or setting them manually in heroku
@@ -32,6 +22,15 @@
   api_key: 'Your API key'
   api_secret: 'Your API secret key'
   ADDRESS: 'e.g smtp.gmail.com'
+
+
+* Configuration
+
+  Open Console at the root project directory and type 'bundle install' to install requried gems
+
+  use rails db:setup to initialise, migrate and seed the database
+  or
+  rails db:create, rails db:migrate and rails db:seed individually to achieve the same goal
 
 
 * Deployment on heroku

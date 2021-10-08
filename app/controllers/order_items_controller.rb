@@ -5,13 +5,7 @@ class OrderItemsController < ApplicationController
   before_action :initialize_order
 
   def create
-    if @order_item.save
-      session[:order_id] = @order.id
-      flash.now[:notice] = 'Item added to cart'
-      set_cart_count
-    else
-      flash.now[:alert] = 'Item could not be added to cart'
-    end
+    add_to_cart unless @order_item.nil?
     respond_to do |format|
       format.html { redirect_to items_path }
       format.js
@@ -19,6 +13,16 @@ class OrderItemsController < ApplicationController
   end
 
   private
+
+  def add_to_cart
+    if @order_item.save
+      session[:order_id] = @order.id
+      flash.now[:notice] = 'Item added to cart'
+      set_cart_count
+    else
+      flash.now[:alert] = 'Item could not be added to cart'
+    end
+  end
 
   def order_params
     params.permit(:item_id, :unit_price, :item_title)
@@ -31,14 +35,19 @@ class OrderItemsController < ApplicationController
   end
 
   def initialize_order
-    @order_item = @order.order_items.find_or_initialize_by(order_params)
+    if @order.order_items.find_by(order_params).nil?
+      @order_item = @order.order_items.new(order_params)
+    else
+      flash[:alert] = 'Item already added to cart'
+    end
   end
 
   def current_order
-    if Order.find_by(id: session[:order_id], status: :in_progress).nil?
+    order = Order.find_by(id: session[:order_id], status: :in_progress)
+    if order.nil?
       Order.new
     else
-      Order.find_by(id: session[:order_id], status: :in_progress)
+      order
     end
   end
 end

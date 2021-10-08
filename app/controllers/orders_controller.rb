@@ -2,7 +2,11 @@
 
 class OrdersController < ApplicationController
   def index
-    @orders = params[:status] ? Order.show_by_status(order_params[:status]).order(:id) : Order.not_in_progress.order(:id)
+    @orders = if params[:status]
+                Order.show_by_status(order_params[:status]).order(id: :desc)
+              else
+                Order.not_in_progress.order(id: :desc)
+              end.page(params[:page]).per(5)
     authorize @orders, policy_class: OrderPolicy
   end
 
