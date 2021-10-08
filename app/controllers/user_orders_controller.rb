@@ -3,7 +3,6 @@
 class UserOrdersController < ApplicationController
   include Checkoutable
 
-  # before_action :set_order, only: :show
   def index
     @orders = if params[:status]
                 Order.where(user_id: current_user.id).show_by_status(params[:status]).order(:id)

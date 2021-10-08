@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OrdersController < ApplicationController
-  # before_action :set_order, only: %i[show update]
   def index
     @orders = params[:status] ? Order.show_by_status(order_params[:status]).order(:id) : Order.not_in_progress.order(:id)
     authorize @orders, policy_class: OrderPolicy

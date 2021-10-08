@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class AdminController < ApplicationController
-  # before_action :set_user, only: :update
   def index
     @users = User.members_only.order(:id)
     authorize @users, policy_class: AdminPolicy
