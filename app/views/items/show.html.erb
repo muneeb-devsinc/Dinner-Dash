@@ -1,6 +1,6 @@
 <%= cl_image_tag(@item.picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true, default_image: 'cookie.jpeg') %>
 
-<p class= 'display-4'><%= @item.title %></p>
+<h4 class= 'display-4'><%= @item.title %></h4>
 <br>
 <p class ='display-6'><%= @item.description %></p>
 <br>
