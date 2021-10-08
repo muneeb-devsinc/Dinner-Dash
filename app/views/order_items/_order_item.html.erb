@@ -2,12 +2,16 @@
   <td><%= cl_image_tag(order_item.item.picture.key, height: 100, width: 100, gravity: :face, crop: :thumb, sign_url: true, default_image: 'cookie.jpeg') %></td>
   <td><%= order_item.item_title %></td>
   <td><%= order_item.unit_price %></td>
+  <%if order_item.order.in_progress?%>
+    <td><%= link_to '-',cart_path(item_id: order_item.item), method: :patch,remote: true, class: 'btn btn-dark' %></td>
+  <% end %>
   <td id=<%= "quantity-#{order_item.item_id}" %> ><%= order_item.quantity %></td>
+  <%if order_item.order.in_progress?%>
+    <td><%= link_to '+',cart_path(item_id: order_item.item, increase: true), method: :patch,remote:true, class: 'btn btn-dark' %></td>
+  <% end %>
   <td id=<%= "item_total-#{order_item.item_id}" %>><%= order_item.total %></td>
   <td><%= link_to 'Show Item',item_path(order_item.item), class: 'btn btn-dark' %></td>
   <%if order_item.order.in_progress?%>
-    <td><%= link_to 'Increase Quantity',cart_path(item_id: order_item.item, increase: true), method: :patch,remote:true, class: 'btn btn-dark' %></td>
-      <td><%= link_to 'Decrease Quantity',cart_path(item_id: order_item.item), method: :patch,remote: true, class: 'btn btn-dark' %></td>
       <td><%= link_to 'Remove Item From Cart', cart_path(item_id:order_item.item),
               method: :delete,
               data: { confirm: 'Are you sure?' },class: 'btn btn-dark' %></td>

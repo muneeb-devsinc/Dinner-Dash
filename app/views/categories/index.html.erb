@@ -4,6 +4,7 @@
 <table class='table'>
   <tr>
     <th>Category</th>
+    <th colspace='1'></th>
   </tr>
   <% @categories.each do |category| %>
     <tr>
@@ -17,5 +18,4 @@
     </tr>
   <% end %>
 </table>
-<td><%= link_to 'Back',url_for(:back), class: 'btn btn-dark' %>
 

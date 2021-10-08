@@ -3,7 +3,7 @@
 class UserOrdersController < ApplicationController
   include Checkoutable
 
-  before_action :set_order, only: :show
+  # before_action :set_order, only: :show
   def index
     @orders = if params[:status]
                 Order.where(user_id: current_user.id).show_by_status(params[:status]).order(:id)
@@ -14,7 +14,7 @@ class UserOrdersController < ApplicationController
   end
 
   def show
-    authorize @order, policy_class: UserOrderPolicy
+    authorize order, policy_class: UserOrderPolicy
   end
 
   def update
@@ -30,7 +30,7 @@ class UserOrdersController < ApplicationController
 
   private
 
-  def set_order
-    @order = Order.find(params[:id])
+  def order
+    @order ||= Order.find(params[:id])
   end
 end
